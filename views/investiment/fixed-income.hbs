@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investimento Renda Fixa</title>
+</head>
+<body>
+
+    <form action="/investiment/fixed-income" method="post">
+        <input type="text" name="id" placeholder="id"/>
+        <input type="text" name="name" placeholder="nome"/>
+        <select name="status">
+            <option value="available">Disponível</option>
+            <option value="unavailable">Indisponível</option>
+        </select>
+        <input type="text" name="destination" placeholder="destinação"/>
+        <input type="number" name="profitabilityRate" placeholder="taxa rentabilidade a.a."/>
+        <input type="number" name="time" placeholder="prazo"/>
+        <input type="number" name="administrationFee" placeholder="taxa administração"/>
+        <button type="submit">Add</button>
+    </form>
+    <ul>
+        {{#each fixedIncomes}}
+            <li>
+                <strong>{{this.name}} - Status: {{this.status}}</strong>
+            </li>
+        {{/each}}
+        
+    </ul>
+</body>
+</html>
