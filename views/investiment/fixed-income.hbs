@@ -12,14 +12,14 @@
 
 <body>
     <div class="container">
-        <div>
+        <div class="containerHeader">
             <header>
                 <h1>
                     Project Investiment Pink
                 </h1>
             </header>
         </div>
-        <div class="form">
+        <div class="formFixedIncome">
             <h3>Investimento de Renda Fixa</h3>
             <form action="/investiment/fixed-income" method="post">
                 <input type="text" name="name" placeholder="nome" />
@@ -27,49 +27,58 @@
                     <option value="disponível">Disponível</option>
                     <option value="indisponível">Indisponível</option>
                 </select>
-                <input type="text" name="destination" placeholder="destinação" />
+                <textarea name="destination" placeholder="destinação"></textarea>
                 <input type="number" name="profitabilityRate" placeholder="taxa rentabilidade a.a." />
                 <input type="number" name="time" placeholder="prazo" />
                 <input type="number" name="administrationFee" placeholder="taxa administração" />
                 <button type="submit">
-                    adicionar
+                    Adicionar
                 </button>
             </form>
         </div>
-        <article class="list-fixed-income">
 
-            <div class="header-item">
-                <span>Nome: </span>
-                <span>Status: </span>
-                <span>Destinação: </span>
-                <span>Taxa de rentabilidade: </span>
-                <span>Prazo: </span>
-                <span>Taxa de administração: </span>
-                <span>Ações</span>
-            </div>
+        <div class="list-fixed-income">
 
-            {{#each fixedIncomes}}
-            <section class="list-item">
-                <div class="data-item">
-                    <span> {{ this.name}} </span>
-                    <button onclick="fetchUpdateFixedIncome('{{this.id}}')">
-                        <span>{{this.status}} </span>
-                    </button>
-                    <span>{{this.destination}}</span>
-                    <span>{{this.profitabilityRate}}</span>
-                    <span>{{this.time}}</span>
-                    <span>{{this.administrationFee}}</span>
-                    <button onclick="fetchRemoveFixedIncome('{{this.id}}')">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
+            <h3>Listagem de Investimentos</h3>
+            <table class=".table-income">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Status</th>
+                        <th>Destinação</th>
+                        <th>Taxa de Rentabilidade</th>
+                        <th>Prazo</th>
+                        <th>Taxa de Administração</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each fixedIncomes}}
+                        <tr>
+                            <td> {{ this.name}} </td>
+
+                            <td>
+                                <button class="status-button" onclick="fetchUpdateFixedIncome('{{this.id}}')">
+                                    {{this.status}}
+                                </button>
+                            </td>
+                            <td>{{this.destination}}</td>
+                            <td>{{this.profitabilityRate}}</td>
+                            <td>{{this.time}}</td>
+                            <td>{{this.administrationFee}}</td>
+                            <td>
+                                <button  class="remove-button" onclick="fetchRemoveFixedIncome('{{this.id}}')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
 
 
-            </section>
-
-            {{/each}}
-
-        </article>
+        </div>
     </div>
 
 </body>
