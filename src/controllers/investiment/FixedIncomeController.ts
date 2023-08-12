@@ -19,7 +19,6 @@ export class FixedIncomeController {
   @Render('investiment/fixed-income')
   async getListFixedIncome() {
     const fixedIncomes = await this.fixedIncomeService.getListFixedIncomes();
-    console.log(fixedIncomes);
     return { fixedIncomes };
   }
 

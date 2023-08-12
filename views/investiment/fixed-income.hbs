@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/fixed-income.css">
 
     <title>Investimento Renda Fixa</title>
 </head>
@@ -21,7 +22,6 @@
         <div class="form">
             <h3>Investimento de Renda Fixa</h3>
             <form action="/investiment/fixed-income" method="post">
-                <input type="text" name="id" placeholder="id" />
                 <input type="text" name="name" placeholder="nome" />
                 <select name="status">
                     <option value="disponível">Disponível</option>
@@ -38,26 +38,33 @@
         </div>
         <article class="list-fixed-income">
 
+            <div class="header-item">
+                <span>Nome: </span>
+                <span>Status: </span>
+                <span>Destinação: </span>
+                <span>Taxa de rentabilidade: </span>
+                <span>Prazo: </span>
+                <span>Taxa de administração: </span>
+                <span>Ações</span>
+            </div>
+
             {{#each fixedIncomes}}
             <section class="list-item">
-                <span>Nome: </span>
-                <span> {{ this.name}} </span>
-                <span>Status: </span>
-                <button onclick="fetchUpdateFixedIncome({{this.id}})">
-                    <span>{{this.status}} </span>
-                </button>
-                <span>Destinação: </span>
-                <span>{{this.destination}}</span>
-                <span>Taxa de rentabilidade: </span>
-                <span>{{this.profitabilityRate}}</span>
-                <span>Prazo: </span>
-                <span>{{this.time}}</span>
-                <span>Taxa de administração: </span>
-                <span>{{this.administrationFee}}</span>
+                <div class="data-item">
+                    <span> {{ this.name}} </span>
+                    <button onclick="fetchUpdateFixedIncome('{{this.id}}')">
+                        <span>{{this.status}} </span>
+                    </button>
+                    <span>{{this.destination}}</span>
+                    <span>{{this.profitabilityRate}}</span>
+                    <span>{{this.time}}</span>
+                    <span>{{this.administrationFee}}</span>
+                    <button onclick="fetchRemoveFixedIncome('{{this.id}}')">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
 
-                <button onclick="fetchRemoveFixedIncome({{this.id}})">
-                    <i class="fas fa-trash"></i>
-                </button>
+
             </section>
 
             {{/each}}

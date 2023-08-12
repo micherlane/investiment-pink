@@ -3,8 +3,9 @@ import {
   StatusCode,
 } from '../../models/investiment/FixedIncomeModel';
 
+import { v4 as uuidv4 } from 'uuid';
+
 interface AddFixedIncomeRequest {
-  id: string;
   name: string;
   status: StatusCode;
   destination: string;
@@ -17,7 +18,6 @@ class FixedIncomeService {
   private _listFixedIncomes: Array<FixedIncomeModel> = [];
 
   async addFixedIncome({
-    id,
     name,
     status,
     destination,
@@ -25,6 +25,7 @@ class FixedIncomeService {
     time,
     administrationFee,
   }: AddFixedIncomeRequest) {
+    const id = uuidv4();
     const fixedIncome = new FixedIncomeModel(
       id,
       name,
