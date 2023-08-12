@@ -118,7 +118,7 @@ form button {
     border-radius: 0.5rem;
 }
 
-.list-fixed-income h3{
+.list-text{
     color: var(--white);
 }
 table {
@@ -168,5 +168,13 @@ tr:hover {
 @media(max-width: 1800px){
     html{
       font-size: 93.75%;
+    }
+}
+
+@media (max-width: 720px) {
+    .list-fixed-income{
+        max-height: 400px;
+        overflow-y: auto;
+
     }
 }
