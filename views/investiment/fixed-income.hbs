@@ -83,7 +83,7 @@
             const response = await fetch(url, options);
             if (response.ok) {
                 console.log('Requisição delete bem-sucedida');
-                window.location.href = 'https://investimentpink.onrender.com/investiment/fixed-income';
+                window.location.href = 'http://localhost:3000/investiment/fixed-income';
             } else {
                 console.error('Erro na requisição PUT:', response.status, response.statusText);
             }
@@ -93,7 +93,7 @@
     }
 
     async function fetchRemoveFixedIncome(id) {
-        const url = `https://investimentpink.onrender.com/investiment/fixed-income/${id}`
+        const url = `http://localhost:3000/investiment/fixed-income/${id}`
 
         const options = {
             method: 'DELETE',
