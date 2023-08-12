@@ -1,32 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investimento Renda Fixa</title>
 </head>
+
 <body>
 
     <form action="/investiment/fixed-income" method="post">
-        <input type="text" name="id" placeholder="id"/>
-        <input type="text" name="name" placeholder="nome"/>
+        <input type="text" name="id" placeholder="id" />
+        <input type="text" name="name" placeholder="nome" />
         <select name="status">
-            <option value="available">Disponível</option>
-            <option value="unavailable">Indisponível</option>
+            <option value="disponível">Disponível</option>
+            <option value="indisponível">Indisponível</option>
         </select>
-        <input type="text" name="destination" placeholder="destinação"/>
-        <input type="number" name="profitabilityRate" placeholder="taxa rentabilidade a.a."/>
-        <input type="number" name="time" placeholder="prazo"/>
-        <input type="number" name="administrationFee" placeholder="taxa administração"/>
+        <input type="text" name="destination" placeholder="destinação" />
+        <input type="number" name="profitabilityRate" placeholder="taxa rentabilidade a.a." />
+        <input type="number" name="time" placeholder="prazo" />
+        <input type="number" name="administrationFee" placeholder="taxa administração" />
         <button type="submit">Add</button>
     </form>
     <ul>
         {{#each fixedIncomes}}
-            <li>
-                <strong>{{this.name}} - Status: {{this.status}}</strong>
-            </li>
+        <li>
+            <strong>{{this.name}} - Status: {{this.status}}</strong>
+            <button onclick="fetchUpdateFixedIncome({{this.id}})">Update</button>
+            <button onclick="fetchRemoveFixedIncome({{this.id}})">Remove</button>
+
+        </li>
         {{/each}}
-        
+
     </ul>
 </body>
+<script>
+
+    async function fetchUpdateFixedIncome(id) {
+        const url = `http://localhost:3000/investiment/fixed-income/${id}`
+
+        const options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json', // Defina o tipo de conteúdo apropriado
+            },
+
+        }
+
+        try {
+            const response = await fetch(url, options);
+            if (response.ok) {
+                console.log('Requisição delete bem-sucedida');
+                // Redirecionar após a requisição ser bem-sucedida
+                window.location.href = 'http://localhost:3000/investiment/fixed-income'; // Substitua pelo URL correto
+            } else {
+                console.error('Erro na requisição PUT:', response.status, response.statusText);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function fetchRemoveFixedIncome(id) {
+        const url = `http://localhost:3000/investiment/fixed-income/${id}`
+
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json', // Defina o tipo de conteúdo apropriado
+            },
+
+        }
+
+        try {
+            const response = await fetch(url, options);
+
+            if (response.ok) {
+                console.log('Requisição delete bem-sucedida');
+                // Redirecionar após a requisição ser bem-sucedida
+                window.location.href = 'http://localhost:3000/investiment/fixed-income'; // Substitua pelo URL correto
+            } else {
+                console.error('Erro na requisição PUT:', response.status, response.statusText);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+</script>
+
 </html>

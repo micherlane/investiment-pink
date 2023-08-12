@@ -1,6 +1,6 @@
 export enum StatusCode {
-  available,
-  unavailable,
+  available = 'disponível',
+  unavailable = 'indisponível',
 }
 
 class FixedIncomeModel {

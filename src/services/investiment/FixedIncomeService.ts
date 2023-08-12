@@ -50,6 +50,7 @@ class FixedIncomeService {
   }
 
   async changeStatus(id: string) {
+    let fixedIncomeFounded;
     this._listFixedIncomes.forEach((fixedIncome) => {
       if (fixedIncome.id === id) {
         if (fixedIncome.status === StatusCode.available) {
@@ -57,9 +58,10 @@ class FixedIncomeService {
         } else {
           fixedIncome.status = StatusCode.available;
         }
-        return;
+        fixedIncomeFounded = fixedIncome;
       }
     });
+    return fixedIncomeFounded;
   }
 }
 
