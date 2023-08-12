@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
     <title>Hello World!</title>
 </head>
+
 <body>
-
-    <header>
-        <h1>Projeto Rosa - Investimento Renda Fixa</h1>
-    </header>
-
-    <nav>
-        <a href="/investiment/fixed-income">
-            Gerenciar Investimento
-        </a>
-    </nav>
+    <div class="container">
+        <header>
+            <h1>Projeto Rosa - Investimento Renda Fixa</h1>
+        </header>
+        <nav>
+            <a href="/investiment/fixed-income"> Acesse aqui -> Gerenciar Investimento
+            </a>
+        </nav>
 
 
-    <h3>Teste Hello</h3>
-    <form action="exibir-hello" method="post">
-        <input type="text" name="nome" placeholder="Digite seu nome..."/>
-        <button type="submit">Enviar</button>
-    </form>
+        <h3>Teste Hello</h3>
+        <form action="exibir-hello" method="post">
+            <input type="text" name="nome" placeholder="Digite seu nome..." />
+            <button type="submit">Enviar</button>
+        </form>
 
-    {{#if nome}}
+        {{#if nome}}
         <p>Hello, {{nome}} !</p>
-    {{/if}}
+        {{/if}}
+    </div>
 
-    
+
+
+
+
 </body>
+
 </html>
