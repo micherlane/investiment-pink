@@ -51,8 +51,7 @@
             const response = await fetch(url, options);
             if (response.ok) {
                 console.log('Requisição delete bem-sucedida');
-                // Redirecionar após a requisição ser bem-sucedida
-                window.location.href = 'http://localhost:3000/investiment/fixed-income'; // Substitua pelo URL correto
+                window.location.href = 'http://localhost:3000/investiment/fixed-income';
             } else {
                 console.error('Erro na requisição PUT:', response.status, response.statusText);
             }
@@ -67,7 +66,7 @@
         const options = {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json', // Defina o tipo de conteúdo apropriado
+                'Content-Type': 'application/json', 
             },
 
         }
@@ -77,9 +76,7 @@
 
             if (response.ok) {
                 console.log('Requisição delete bem-sucedida');
-                // Redirecionar após a requisição ser bem-sucedida
-                window.location.href = 'http://localhost:3000/investiment/fixed-income'; // Substitua pelo URL correto
-            } else {
+                window.location.href = 'http://localhost:3000/investiment/fixed-income';
                 console.error('Erro na requisição PUT:', response.status, response.statusText);
             }
         } catch (error) {
