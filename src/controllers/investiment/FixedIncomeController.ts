@@ -30,13 +30,13 @@ export class FixedIncomeController {
 
   @Put('/investiment/fixed-income/:id')
   async updateStatus(@Res() res, @Param('id') id: string) {
-    await this.fixedIncomeService.changeStatus(id);
-    return res.json();
+    const fixedIncome = await this.fixedIncomeService.changeStatus(id);
+    return res.status(200).json({ fixedIncome });
   }
 
   @Delete('/investiment/fixed-income/:id')
-  async deleteFixedIncome(@Res() res: Response, @Param('id') id: string) {
+  async deleteFixedIncome(@Res() res, @Param('id') id: string) {
     await this.fixedIncomeService.removeFixedIncome(id);
-    return res.json();
+    return res.status(200).json({});
   }
 }
