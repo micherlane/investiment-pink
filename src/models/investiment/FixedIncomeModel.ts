@@ -3,6 +3,11 @@ export enum StatusCode {
   unavailable = 'indisponível',
 }
 
+export enum DailyLiquidity {
+  sim = 'sim',
+  nao = 'não',
+}
+
 class FixedIncomeModel {
   private _id: string;
   private _name: string;
@@ -10,6 +15,8 @@ class FixedIncomeModel {
   private _destination: string;
   private _profitabilityRate: number;
   private _time: number;
+  private _dueDate: Date;
+  private _dailyLiquidity: DailyLiquidity;
   private _administrationFee: number;
 
   constructor(
@@ -19,6 +26,8 @@ class FixedIncomeModel {
     destination: string,
     profitabilityRate: number,
     time: number,
+    dueDate: Date,
+    dailyLiquidity: DailyLiquidity,
     administrationFee: number,
   ) {
     this.id = id;
@@ -27,6 +36,8 @@ class FixedIncomeModel {
     this.destination = destination;
     this.profitabilityRate = profitabilityRate;
     this.time = time;
+    this._dueDate = dueDate;
+    this._dailyLiquidity = dailyLiquidity;
     this.administrationFee = administrationFee;
   }
 
@@ -83,6 +94,22 @@ class FixedIncomeModel {
 
   set administrationFee(value: number) {
     this._administrationFee = value;
+  }
+
+  get dueDate(): Date {
+    return this._dueDate;
+  }
+
+  set dueDate(value: Date) {
+    this._dueDate = value;
+  }
+
+  get dailyLiquidity(): DailyLiquidity {
+    return this._dailyLiquidity;
+  }
+
+  set dailyLiquidity(value: DailyLiquidity) {
+    this._dailyLiquidity = value;
   }
 }
 

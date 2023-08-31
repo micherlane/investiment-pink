@@ -36,7 +36,7 @@ body, input, textarea, select, button {
 }
 
 .container {
-    max-width: 720px;
+    max-width: 1080px;
     margin: 4rem auto;
     padding: 0 2rem;
 }
@@ -116,6 +116,20 @@ form button {
     color: var(--black);
     font-weight: bold;
     border-radius: 0.5rem;
+}
+
+.select-style {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.select-style label {
+    color: white;
+    margin-bottom: 1rem;
+}
+.select-style select {
+    width: 80%;
 }
 
 .list-text{

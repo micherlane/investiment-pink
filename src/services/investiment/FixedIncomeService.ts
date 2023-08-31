@@ -1,4 +1,5 @@
 import {
+  DailyLiquidity,
   FixedIncomeModel,
   StatusCode,
 } from '../../models/investiment/FixedIncomeModel';
@@ -11,6 +12,8 @@ interface AddFixedIncomeRequest {
   destination: string;
   profitabilityRate: number;
   time: number;
+  dueDate: Date;
+  dailyLiquidity: DailyLiquidity;
   administrationFee: number;
 }
 
@@ -23,6 +26,8 @@ class FixedIncomeService {
     destination,
     profitabilityRate,
     time,
+    dueDate,
+    dailyLiquidity,
     administrationFee,
   }: AddFixedIncomeRequest) {
     const id = uuidv4();
@@ -33,6 +38,8 @@ class FixedIncomeService {
       destination,
       profitabilityRate,
       time,
+      dueDate,
+      dailyLiquidity,
       administrationFee,
     );
 
