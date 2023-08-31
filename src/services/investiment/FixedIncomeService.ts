@@ -42,6 +42,7 @@ class FixedIncomeService {
       dailyLiquidity,
       administrationFee,
     );
+    console.log(fixedIncome.toJSON());
 
     this._listFixedIncomes.push(fixedIncome);
     return fixedIncome;

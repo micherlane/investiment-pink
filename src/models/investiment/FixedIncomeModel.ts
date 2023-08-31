@@ -30,15 +30,15 @@ class FixedIncomeModel {
     dailyLiquidity: DailyLiquidity,
     administrationFee: number,
   ) {
-    this.id = id;
-    this.name = name;
-    this.status = status;
-    this.destination = destination;
-    this.profitabilityRate = profitabilityRate;
-    this.time = time;
+    this._id = id;
+    this._name = name;
+    this._status = status;
+    this._destination = destination;
+    this._profitabilityRate = profitabilityRate;
+    this._time = time;
     this._dueDate = dueDate;
     this._dailyLiquidity = dailyLiquidity;
-    this.administrationFee = administrationFee;
+    this._administrationFee = administrationFee;
   }
 
   get id(): string {
@@ -110,6 +110,20 @@ class FixedIncomeModel {
 
   set dailyLiquidity(value: DailyLiquidity) {
     this._dailyLiquidity = value;
+  }
+
+  toJSON() {
+    return {
+      id: this.id,
+      name: this.name,
+      status: this.status,
+      destination: this.destination,
+      profitabilityRate: this.profitabilityRate,
+      time: this.time,
+      dueDate: this.dueDate,
+      dailyLiquidity: this.dailyLiquidity,
+      administrationFee: this.administrationFee,
+    };
   }
 }
 
