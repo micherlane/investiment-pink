@@ -7,7 +7,6 @@ import {
   Param,
   Post,
   Put,
-  Render,
   Res,
 } from '@nestjs/common';
 
@@ -16,7 +15,6 @@ export class FixedIncomeController {
   constructor(private readonly fixedIncomeService: FixedIncomeService) {}
 
   @Get('/investiment/fixed-income')
-  @Render('investiment/fixed-income')
   async getListFixedIncome() {
     const fixedIncomes = await this.fixedIncomeService.getListFixedIncomes();
     return { fixedIncomes };
@@ -24,8 +22,8 @@ export class FixedIncomeController {
 
   @Post('/investiment/fixed-income')
   async addFixedIncome(@Res() res, @Body() data) {
-    await this.fixedIncomeService.addFixedIncome(data);
-    res.redirect('/investiment/fixed-income');
+    const fixedIncome = await this.fixedIncomeService.addFixedIncome(data);
+    res.status(200).json({ fixedIncome });
   }
 
   @Put('/investiment/fixed-income/:id')
