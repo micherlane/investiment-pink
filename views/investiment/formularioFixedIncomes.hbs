@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/css/fixed-income.css">
+
+    <title>Investimento Renda Fixa</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="containerHeader">
+            <header>
+                <h1>
+                    Project Investiment Pink
+                </h1>
+            </header>
+        </div>
+        <div class="formFixedIncome">
+            <h3>Investimento de Renda Fixa</h3>
+            <form action="/investiment/fixed-income" method="post">
+                <input type="text" name="name" placeholder="Nome do investimento" />
+
+                <div class="select-style">
+                    <label for="status">Status:</label>
+                    <select name="status" id="status">
+                        <option value="disponível">Disponível</option>
+                        <option value="indisponível">Indisponível</option>
+                    </select>
+                </div>
+                <textarea name="destination" placeholder="Digite a destinação..."></textarea>
+                <input type="number" name="profitabilityRate" placeholder="Taxa de rentabilidade a.a." />
+                <input type="number" name="time" placeholder="Prazo" />
+
+                <div class="select-style">
+                    <label for="dailyLiquidity">Há liquidez líquida? </label>
+                    <select name="dailyLiquidity" id="dailyLiquidity">
+                        <option value="sim">Sim</option>
+                        <option value="não">Não</option>
+                    </select>
+                </div>
+
+                <input type="date" name="dueDate" />
+                <input type="number" name="administrationFee" placeholder="Taxa de administração" />
+                <button type="submit">
+                    Adicionar
+                </button>
+            </form>
+        </div>
+
+        
+    </div>
+
+</body>
+<script>
+
+    async function fetchUpdateFixedIncome(id) {
+        const url = `/investiment/fixed-income/${id}`
+
+        const options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+
+        }
+
+        try {
+            const response = await fetch(url, options);
+            if (response.ok) {
+                console.log('Requisição delete bem-sucedida');
+                window.location.href = '/investiment/fixed-income';
+            } else {
+                console.error('Erro na requisição PUT:', response.status, response.statusText);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function fetchRemoveFixedIncome(id) {
+        const url = `/investiment/fixed-income/${id}`
+
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+
+        }
+
+        try {
+            const response = await fetch(url, options);
+
+            if (response.ok) {
+                console.log('Requisição delete bem-sucedida');
+                window.location.href = '/investiment/fixed-income';
+            } else {
+                console.error('Erro na requisição PUT:', response.status, response.statusText);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+</script>
+
+</html>

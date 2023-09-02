@@ -1,0 +1,111 @@
+{{#> base }}
+
+{{#*inline "title"}}Investimentos{{/inline}}
+
+
+{{#*inline "mainContent"}}
+{{#if fixedIncomes.length }}
+
+<h3 class="list-text">Listagem de Investimentos</h3>
+
+<div class="list-fixed-income">
+    <table class="table-income">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Status</th>
+                <th>Destinação</th>
+                <th>Taxa de Rentabilidade</th>
+                <th>Prazo</th>
+                <th>Taxa de Administração</th>
+                <th>Vencimento</th>
+                <th>Liquidez Diária</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each fixedIncomes}}
+            <tr>
+                <td> {{ this.name}} </td>
+
+                <td>
+                    <button class="status-button" onclick="fetchUpdateFixedIncome('{{this.id}}')">
+                        {{this.status}}
+                    </button>
+                </td>
+                <td>{{this.destination}}</td>
+                <td>{{this.profitabilityRate}}</td>
+                <td>{{this.time}}</td>
+                <td>{{this.dailyLiquidity}}</td>
+                <td>{{this.dueDate}}</td>
+                <td>{{this.administrationFee}}</td>
+                <td>
+                    <button class="remove-button" onclick="fetchRemoveFixedIncome('{{this.id}}')">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <script>
+
+        async function fetchUpdateFixedIncome(id) {
+            const url = `/investiment/fixed-income/${id}`
+
+            const options = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+
+            }
+
+            try {
+                const response = await fetch(url, options);
+                if (response.ok) {
+                    console.log('Requisição delete bem-sucedida');
+                    window.location.href = '/investiment/fixed-incomes';
+                } else {
+                    console.error('Erro na requisição PUT:', response.status, response.statusText);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        async function fetchRemoveFixedIncome(id) {
+            const url = `/investiment/fixed-income/${id}`
+
+            const options = {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+
+            }
+
+            try {
+                const response = await fetch(url, options);
+
+                if (response.ok) {
+                    console.log('Requisição delete bem-sucedida');
+                    window.location.href = '/investiment/fixed-incomes';
+                } else {
+                    console.error('Erro na requisição PUT:', response.status, response.statusText);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+    </script>
+
+</div>
+{{/if}}
+{{/inline}}
+
+
+
+{{/base}}
