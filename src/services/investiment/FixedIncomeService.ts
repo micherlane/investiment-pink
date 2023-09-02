@@ -54,7 +54,7 @@ class FixedIncomeService {
     );
   }
 
-  async getListFixedIncomes() {
+  async getAllFixedIncomes() {
     return this._listFixedIncomes;
   }
 
