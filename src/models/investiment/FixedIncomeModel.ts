@@ -111,6 +111,20 @@ class FixedIncomeModel {
   set dailyLiquidity(value: DailyLiquidity) {
     this._dailyLiquidity = value;
   }
+
+  toJSON() {
+    return {
+      id: this.id,
+      name: this.name,
+      status: this.status,
+      destination: this.destination,
+      profitabilityRate: this.profitabilityRate,
+      time: this.time,
+      dueDate: this.dueDate,
+      dailyLiquidity: this.dailyLiquidity,
+      administrationFee: this.administrationFee,
+    };
+  }
 }
 
 export { FixedIncomeModel };
