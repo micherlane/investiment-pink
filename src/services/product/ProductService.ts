@@ -17,7 +17,7 @@ export enum SearchByToColumn {
   administrationFee = "administrationFee"
 };
 
-export enum OrdemBy {
+export enum OrderBy {
   ASC = "asc",
   DESC = "desc",
 }
@@ -94,7 +94,7 @@ class ProductService {
     let value1 = 1;
     let value2 = -1;
 
-    if (ordem === OrdemBy.DESC) {
+    if (ordem === OrderBy.DESC) {
       value1 = -1;
       value2 = 1;
     }

@@ -1,5 +1,5 @@
 import { ProductAddDTO } from 'src/dto/product/ProductAddDTO';
-import { ProductService, SearchByToColumn } from '../../services/product/ProductService';
+import { OrderBy, ProductService, SearchByToColumn } from '../../services/product/ProductService';
 import {
   Body,
   Controller,
@@ -12,7 +12,7 @@ import {
   Query,
   Res,
 } from '@nestjs/common';
-import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ProductModel } from 'src/models/product/ProductModel';
 
 @ApiTags('products')
@@ -105,29 +105,31 @@ export class ProductController {
   }
 
 
+  @ApiQuery({ name: "search_by", enum: SearchByToColumn})
+  @ApiQuery({ name: "order_by", enum: OrderBy })
   @ApiResponse({
     status: HttpStatus.OK,
     type: [ ProductModel ],
     description: 'Retorna uma lista de investimentos ordenados por um atributo em ordem crescente ou descrescente'
   })
   @Get('products/ordenation')
-  async getOrderByProduct(@Res() res, @Query("search_by") search_by: string, @Query("ordem_by") ordem_by: string) {
+  async getOrderByProduct(@Res() res, @Query("search_by") search_by: SearchByToColumn, @Query("order_by") order_by: OrderBy) {
 
-    const product = await this.productService.getOrdemProducts(SearchByToColumn[search_by], ordem_by);
+    const product = await this.productService.getOrdemProducts(search_by, order_by);
 
     return res.status(HttpStatus.OK).json(product)
 
   }
 
+  @ApiQuery({name:"filter_by", enum: SearchByToColumn})
   @ApiResponse({
     status: HttpStatus.OK,
     type: [ProductModel],
     description: 'Retorna uma lista de investimentos com os valores passados no filtro'
-  })
-  
+  })  
   @Get('products/filter')
-  async getFilterProducts(@Res() res, @Query("filter_by") filter_by: string, @Query("value") value: string) {
-    const products = await this.productService.getFilterProducts(SearchByToColumn[filter_by], value);
+  async getFilterProducts(@Res() res, @Query("filter_by") filter_by: SearchByToColumn, @Query("value") value: string) {
+    const products = await this.productService.getFilterProducts(filter_by, value);
     res.status(HttpStatus.OK).json(products);
   }
 }
