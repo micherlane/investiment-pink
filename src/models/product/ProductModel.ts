@@ -1,3 +1,5 @@
+import { ApiProperty } from "@nestjs/swagger";
+
 export enum StatusCode {
   available = 'disponível',
   unavailable = 'indisponível',
@@ -8,7 +10,7 @@ export enum DailyLiquidity {
   nao = 'não',
 }
 
-class FixedIncomeModel {
+class ProductModel {
   private _id: string;
   private _name: string;
   private _status: StatusCode;
@@ -41,6 +43,7 @@ class FixedIncomeModel {
     this.administrationFee = administrationFee;
   }
 
+  @ApiProperty()
   get id(): string {
     return this._id;
   }
@@ -49,6 +52,7 @@ class FixedIncomeModel {
     this._id = value;
   }
 
+  @ApiProperty()
   get name(): string {
     return this._name;
   }
@@ -56,14 +60,16 @@ class FixedIncomeModel {
   set name(value: string) {
     this._name = value;
   }
-
+  @ApiProperty()
   get status(): StatusCode {
     return this._status;
   }
 
   set status(value: StatusCode) {
     this._status = value;
+  
   }
+  @ApiProperty()
   get destination(): string {
     return this._destination;
   }
@@ -71,7 +77,7 @@ class FixedIncomeModel {
   set destination(value: string) {
     this._destination = value;
   }
-
+  @ApiProperty()
   get profitabilityRate(): number {
     return this._profitabilityRate;
   }
@@ -79,7 +85,7 @@ class FixedIncomeModel {
   set profitabilityRate(value: number) {
     this._profitabilityRate = value;
   }
-
+  @ApiProperty()
   get time(): number {
     return this._time;
   }
@@ -87,7 +93,7 @@ class FixedIncomeModel {
   set time(value: number) {
     this._time = value;
   }
-
+  @ApiProperty()
   get administrationFee(): number {
     return this._administrationFee;
   }
@@ -95,7 +101,7 @@ class FixedIncomeModel {
   set administrationFee(value: number) {
     this._administrationFee = value;
   }
-
+  @ApiProperty()
   get dueDate(): Date {
     return this._dueDate;
   }
@@ -103,7 +109,7 @@ class FixedIncomeModel {
   set dueDate(value: Date) {
     this._dueDate = value;
   }
-
+  @ApiProperty()
   get dailyLiquidity(): DailyLiquidity {
     return this._dailyLiquidity;
   }
@@ -127,4 +133,4 @@ class FixedIncomeModel {
   }
 }
 
-export { FixedIncomeModel };
+export { ProductModel };
